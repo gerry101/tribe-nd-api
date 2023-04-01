@@ -2,7 +2,7 @@ from pydantic import BaseModel
 from datetime import datetime
 
 
-class Post(BaseModel):
+class SalesPost(BaseModel):
     timePosted: datetime = datetime.now()
     sellingPrice: float
     sellerFirstName: str
