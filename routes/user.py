@@ -40,10 +40,14 @@ async def delete_user(id, user: User):
 
 @user.get('/user/{id}')
 async def find_a_single_user(id):
-    return userEntity(db.user.find_one({"_id": ObjectId(id)}))
+    found_user = db.user.find_one({"_id": ObjectId(id)})
+    if found_user:
+        return userEntity(found_user)
+    return {
+        "error": "User not found"
+    }
 
 
 @user.get('/user')
 async def find_all_users():
-    print("II")
     return usersEntity(db.user.find())
